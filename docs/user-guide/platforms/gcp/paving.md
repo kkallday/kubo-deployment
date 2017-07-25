@@ -21,8 +21,8 @@
     export project_id=$(gcloud config get-value project)
     export region=us-east1 # region that you will deploy Kubo in
     export zone=us-east1-d # zone that you will deploy Kubo in
-    export service_account_email=${prefix}terraform@${project_id}.iam.gserviceaccount.com
-    export network=<An existing GCP network for deploying kubo>
+    export service_account_email=${prefix}-terraform@${project_id}.iam.gserviceaccount.com
+    export network=<desired network name - this will be created for you via terraform command below>
     
     # Make sure that the IP prefix below denotes a free CIDR range
     export subnet_ip_prefix="10.0.1" # Create new subnet for deployment in $subnet_ip_prefix.0/24
@@ -43,7 +43,7 @@
 1. Create a service account and key:
   
     ```bash
-    gcloud iam service-accounts create ${prefix}terraform
+    gcloud iam service-accounts create ${prefix}-terraform
     gcloud iam service-accounts keys create ~/terraform.key.json \
         --iam-account ${service_account_email}
     ```
